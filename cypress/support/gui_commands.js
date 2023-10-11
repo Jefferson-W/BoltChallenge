@@ -1,5 +1,5 @@
 import { fakerPT_BR } from '@faker-js/faker';
-import Data from '../fixtures/userdate.json'
+import Data from '../fixtures/userdata.json'
 
 
 Cypress.Commands.add('gui_createNewUserSuccessfully', () => {
@@ -27,8 +27,7 @@ Cypress.Commands.add('gui_createNewUserSuccessfully', () => {
 
 Cypress.Commands.add('gui_validatePage', () => {
    cy.get('.navbar-brand')
-      .should('be.visible')
-      .contains('Seu Barriga')
+      .should('have.text', 'Seu Barriga')
 })
 
 Cypress.Commands.add('gui_clickRegisterButton', () => {
@@ -45,12 +44,18 @@ Cypress.Commands.add('gui_acessNewUserPage', () => {
       .click()
 })
 
-Cypress.Commands.add('gui_validateAlertSuccess', () => {
-   cy.get('.alert-success')
-      .should('be.visible')
-})
+Cypress.Commands.add('gui_validateAlertSuccess', ({ message = '' } = {}) => {
 
-//-----------------------------------//
+   if (message == '' || message == null) {
+      cy.get('.alert-success')
+         .should('be.visible')
+   }
+   else {
+      cy.get('.alert-success')
+         .should('have.text', message)
+   }
+
+})
 
 Cypress.Commands.add('gui_loginInvalidUser', () => {
 
@@ -76,13 +81,18 @@ Cypress.Commands.add('gui_enterButton', () => {
       .click()
 })
 
-Cypress.Commands.add('gui_dangerMessage', () => {
-   cy.get('.alert-danger')
-      .should('be.visible')
+Cypress.Commands.add('gui_dangerMessage', ({ message = '' } = {}) => {
+
+   if (message == '' || message == null) {
+      cy.get('.alert-danger')
+         .should('be.visible')
+   }
+   else {
+      cy.get('.alert-danger')
+         .should('have.text', message)
+   }
 })
 
-
-//===================================================================//
 Cypress.Commands.add('gui_loginSuccessfully', () => {
 
    cy.get('#email')
@@ -91,7 +101,7 @@ Cypress.Commands.add('gui_loginSuccessfully', () => {
 
    cy.get('#senha')
       .should('be.visible')
-      .type(Cypress.env('senha'), {log: false})
+      .type(Cypress.env('senha'), { log: false })
 
    cy.gui_enterButton()
 
@@ -99,5 +109,74 @@ Cypress.Commands.add('gui_loginSuccessfully', () => {
 
 })
 
+// -------------------------------------------ACCOUNTS ----------------------------------------//
+
+Cypress.Commands.add('gui_addAccount', () => {
+
+   cy.get('.nav.navbar-nav .dropdown')
+      .click()
+
+   cy.get('.dropdown-menu li a')
+      .contains('Adicionar')
+      .click()
+
+   cy.get('#nome')
+      .should('be.visible')
+      .type('TestesAdicionando3')
+
+   cy.get('button[type=submit]')
+      .should('have.text', 'Salvar')
+      .click()
+
+})
+
+Cypress.Commands.add('gui_listAccount', () => {
+
+   cy.gui_acessOption()
+
+   cy.get(`#tabelaContas`)
+      .should(`be.visible`)
+
+   cy.get('tbody > :nth-child(1) > :nth-child(1)')
+      .should(`have.text`, `TestesAdicionando2`)
+
+   cy.get('tbody > :nth-child(2) > :nth-child(1)')
+      .should(`have.text`, `TestesAdicionando3`)
+})
+
+Cypress.Commands.add('gui_acessOption', () => {
+
+   cy.get('.nav.navbar-nav .dropdown')
+      .click()
+
+   cy.get('.dropdown-menu li a')
+      .contains('Listar')
+      .click()
+})
 
 
+
+Cypress.Commands.add('gui_clickUpdateButton', (option) => {
+
+   if (option < 1 || option == undefined)
+      option = 1
+
+   cy.get(`#tabelaContas tr:nth-of-type(${option}) a[href*="/editarConta"]`)
+      .should('be.visible')
+      .click()
+
+})
+
+Cypress.Commands.add('gui_updateNameAccount', (nameAccount) => {
+
+   cy.get('#nome')
+      .should('be.visible')
+      .clear()
+      .type(nameAccount)
+
+   cy.get('button[type=submit]')
+      .should('have.text', 'Salvar')
+      .click()
+
+   cy.gui_validateAlertSuccess({ message: 'Conta alterada com sucesso!' })
+})
