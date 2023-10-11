@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import { fakerPT_BR } from '@faker-js/faker';
 import Data from '../fixtures/userdata.json'
 
@@ -180,3 +182,108 @@ Cypress.Commands.add('gui_updateNameAccount', (nameAccount) => {
 
    cy.gui_validateAlertSuccess({ message: 'Conta alterada com sucesso!' })
 })
+
+// =============================== MOVEMENT ===========================//
+
+Cypress.Commands.add('gui_createMovementButton', (type, status, account) => {
+
+   cy.get(':nth-child(3) > a')
+      .should('have.text', 'Criar Movimentação')
+      .click()
+
+   cy.gui_fillMomeventType(type)
+
+   cy.gui_fillMovementDate()
+
+   cy.gui_fillPaymentDate()
+
+   cy.gui_fillDescription()
+
+   cy.gui_fillInterested()
+
+   cy.gui_fillValue()
+
+   cy.gui_selectAccount(account)
+
+   cy.gui_fillPaidSituation(status)
+
+   cy.gui_saveMovementButton()
+})
+
+Cypress.Commands.add('gui_fillMomeventType', (type) => {
+
+   cy.get('#tipo')
+      .select(type)
+})
+
+Cypress.Commands.add('gui_fillMovementDate', () => {
+   const now = new Date(2021, 3, 14)
+   cy.clock(now)
+
+   cy.get('#data_transacao')
+      .should('be.visible')
+      .type('15/09/2023')
+
+})
+
+Cypress.Commands.add('gui_fillPaymentDate', () => {
+
+   cy.get('#data_pagamento')
+      .should('be.visible')
+      .type('20/09/2023')
+
+})
+
+Cypress.Commands.add('gui_fillDescription', () => {
+
+   cy.get('#descricao')
+      .should('be.visible')
+      .type('Teste movimentação')
+
+})
+
+Cypress.Commands.add('gui_fillInterested', () => {
+
+   cy.get('#interessado')
+      .should('be.visible')
+      .type('Teste Descrição movimentação')
+
+})
+
+Cypress.Commands.add('gui_fillValue', () => {
+
+   cy.get('#valor')
+      .should('be.visible')
+      .type('2000')
+
+})
+
+Cypress.Commands.add('gui_selectAccount', (account) => {
+   cy.get('#conta')
+      .should('be.visible')
+      .select(account)
+
+})
+
+Cypress.Commands.add('gui_fillPaidSituation', (status) => {
+  
+   if (status.includes('Pago')) {
+      cy.get('#status_pago')
+         .should('be.visible')
+         .check()
+   } else {
+      cy.get('#status_pendente')
+         .should('be.visible')
+         .check()
+   }
+})
+
+Cypress.Commands.add('gui_saveMovementButton', () => {
+   cy.get('.btn')
+      .should('be.visible')
+      .click()
+})
+
+
+
+
