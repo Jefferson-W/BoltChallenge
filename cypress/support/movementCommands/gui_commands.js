@@ -150,7 +150,6 @@ Cypress.Commands.add('gui_fillInvalidPaymentDate', () => {
 
 })
 
-
 Cypress.Commands.add('gui_dangerListMessage', () => {
 
    cy.get('.alert > ul > :nth-child(1)')

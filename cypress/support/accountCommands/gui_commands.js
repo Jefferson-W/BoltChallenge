@@ -3,12 +3,9 @@
 
 import { fakerPT_BR } from '@faker-js/faker';
 
-
 const accountName = fakerPT_BR.internet.userName()
 
-
 Cypress.Commands.add('gui_addAccount', () => {
-
 
     cy.get('.nav.navbar-nav .dropdown')
         .click()
@@ -24,8 +21,19 @@ Cypress.Commands.add('gui_addAccount', () => {
     cy.get('button[type=submit]')
         .should('have.text', 'Salvar')
         .click()
-
 })
+
+Cypress.Commands.add('gui_removeAccount', (name) => {
+    if (name == '' || name == undefined)
+        name = accountName
+
+    cy.get('#tabelaContas tr td')
+        .contains(name)
+        .next()
+        .children('a[href*="remover"]')
+        .click()
+})
+
 
 Cypress.Commands.add('gui_listAccount', () => {
 
@@ -33,12 +41,6 @@ Cypress.Commands.add('gui_listAccount', () => {
 
     cy.get(`#tabelaContas`)
         .should(`be.visible`)
-
-    cy.get('tbody > :nth-child(1) > :nth-child(1)')
-        .should(`have.text`, accountName) // ajustar
-
-    // cy.get('tbody > :nth-child(2) > :nth-child(1)')
-    //     .should(`have.text`, `TestesAdicionando3`)
 })
 
 Cypress.Commands.add('gui_acessOption', () => {

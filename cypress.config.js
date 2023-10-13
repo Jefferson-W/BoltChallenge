@@ -8,6 +8,8 @@ module.exports = defineConfig({
 
     env:{
       senha: '123456@'
-    }
+    },
+    experimentalRunAllSpecs: true,    
   },
+  watchForFileChanges: false,
 });
