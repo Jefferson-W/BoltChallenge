@@ -80,19 +80,20 @@ Cypress.Commands.add('gui_fillInterested', (text) => {
 
 })
 
-Cypress.Commands.add('gui_fillValue', () => {
+Cypress.Commands.add('gui_fillValue', (value) => {
+
+   if (value == '' || value == undefined)
+      value = '2000'
 
    cy.get('#valor')
       .should('be.visible')
-      .type('2000')
-
+      .type(value)
 })
 
 Cypress.Commands.add('gui_selectAccount', (account) => {
    cy.get('#conta')
       .should('be.visible')
       .select(account)
-
 })
 
 Cypress.Commands.add('gui_fillPaidSituation', (status) => {
@@ -147,7 +148,6 @@ Cypress.Commands.add('gui_fillInvalidPaymentDate', () => {
    cy.get('#data_pagamento')
       .should('be.visible')
       .type('TestesPagamento')
-
 })
 
 Cypress.Commands.add('gui_dangerListMessage', () => {
@@ -167,7 +167,7 @@ Cypress.Commands.add('gui_createMovementValueIvalid', (type, status, account, su
    cy.gui_clickMovementButton()
 
    cy.gui_fillMovementType(type)
-   
+
    cy.gui_fillMovementDate(subtractDaysMovement)
 
    cy.gui_fillPaymentDate()
@@ -189,5 +189,4 @@ Cypress.Commands.add('gui_fillInvalidValue', () => {
    cy.get('#valor')
       .should('be.visible')
       .type('TesteValorIncorreto')
-
 })

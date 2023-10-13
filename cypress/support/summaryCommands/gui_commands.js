@@ -11,7 +11,6 @@ Cypress.Commands.add('gui_selectMonth', () => {
         .select('Outubro')
 })
 
-
 Cypress.Commands.add('gui_searchButton', () => {
 
 cy.get('input[value="Buscar"]')

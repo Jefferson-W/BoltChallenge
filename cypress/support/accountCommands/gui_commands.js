@@ -34,7 +34,6 @@ Cypress.Commands.add('gui_removeAccount', (name) => {
         .click()
 })
 
-
 Cypress.Commands.add('gui_listAccount', () => {
 
     cy.gui_acessOption()

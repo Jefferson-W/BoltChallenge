@@ -11,7 +11,7 @@
 ■ Listar todas as contas; - OK
 ■ Alterar o nome das contas; - OK
 ■ Criar um fluxo alternativo para tentar adicionar uma conta com o nome já existente; - OK
-■ Criar um fluxo alternativo para tentar excluir uma conta que esteja vinculada a uma movimentação; - ########FAZER
+■ Criar um fluxo alternativo para tentar excluir uma conta que esteja vinculada a uma movimentação - OK
 
 
 ** ○ Acesse Criar Movimentação **
