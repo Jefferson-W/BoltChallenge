@@ -48,7 +48,7 @@ describe('Tests for Accounts Validations', () => {
         cy.gui_dangerMessage({ message: 'Já existe uma conta com esse nome!' })
     })
 
-    it.only('Existing Movement', () => {
+    it('Existing Movement', () => {
         // DESSENVOLVER
     })
     

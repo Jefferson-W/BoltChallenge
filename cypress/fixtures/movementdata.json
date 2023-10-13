@@ -1,0 +1,8 @@
+{
+    "typeReceita": "Receita",
+    "typeDespesa": "Despesa",
+    "statusPaid": "Pago",
+    "statusPending": "Novo usuário?",
+    "description": "Teste Definido",
+    "interested": "Texto Interessado"
+}

@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import Data from '../../fixtures/movementdata.json'
 
 describe('Tests for Movements Validations', () => {
     beforeEach(() => {
@@ -14,42 +15,42 @@ describe('Tests for Movements Validations', () => {
   
     it('Create Revenue Movement', () => {
   
-       cy.gui_createMovementButton('Receita', 'Pago', 'ContaCarlos')    
+       cy.gui_createMovementButton(Data.typeReceita, Data.statusPaid, 'ContaCarlos')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
        
        
-       cy.gui_createMovementButton('Receita', 'Pago', 'ContaJoao')    
+       cy.gui_createMovementButton(Data.typeReceita, Data.statusPaid, 'ContaJoao')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
 
 
-       cy.gui_createMovementButton('Despesa', 'Pago', 'ContaCarlos')    
+       cy.gui_createMovementButton(Data.typeDespesa, Data.statusPaid, 'ContaCarlos')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
       
     
-       cy.gui_createMovementButton('Despesa', 'Pago', 'ContaJoao')    
+       cy.gui_createMovementButton(Data.typeDespesa, Data.statusPaid, 'ContaJoao')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
 
 
-       cy.gui_createMovementButton('Receita', 'Pendente', 'ContaJoao')    
+       cy.gui_createMovementButton(Data.typeReceita, Data.statusPending, 'ContaJoao')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
       
        
-       cy.gui_createMovementButton('Receita', 'Pendente', 'ContaCarlos')    
+       cy.gui_createMovementButton(Data.typeReceita, Data.statusPending, 'ContaCarlos')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
 
 
-       cy.gui_createMovementButton('Despesa', 'Pendente', 'ContaJoao')    
+       cy.gui_createMovementButton(Data.typeDespesa, Data.statusPending, 'ContaJoao')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
        
 
-       cy.gui_createMovementButton('Despesa', 'Pendente', 'ContaCarlos')    
+       cy.gui_createMovementButton(Data.typeDespesa, Data.statusPending, 'ContaCarlos')    
        
        cy.gui_validateAlertSuccess({ message: 'Movimentação adicionada com sucesso!' })
   

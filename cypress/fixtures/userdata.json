@@ -1,4 +1,6 @@
 {
   "name": "usuarioValido@teste.com",
-  "email": "usuarioValido@teste.com"  
+  "email": "usuarioValido@teste.com",
+  "namePage": "Seu Barriga",
+  "newUser": "Novo usuário?"
 }
