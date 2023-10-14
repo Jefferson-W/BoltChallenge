@@ -30,4 +30,11 @@ describe('Tests for Logins Validations', () => {
     
     cy.gui_loginSuccessfully()
   })
+
+  it('Logout successfully', () => {
+    
+    cy.gui_loginSuccessfully()
+
+    cy.gui_logout()
+  })
 })

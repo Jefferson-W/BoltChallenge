@@ -48,8 +48,6 @@ Ao fim da execução sem interface gráfica serão apresentados os resultados no
 
 ## Report com Allure
 
-* O report não é gerado quando o teste é executado no modo de interface grafica. Apenas no modo headless
-
 Após finalizado a execução do cenário, execute o comando abaixo para geração do report:
 
 ```
@@ -64,7 +62,14 @@ Para conservar o historico das ultimas execuções locais, substitua o comando a
 
 ```
 npm run allure:serve
+
 ```
+## Evidencias
+
+As evidencias em video estão na pasta cypress/videos
+
+As screenshots estão no arquivo documentacaoTestesAutomatizados.pdf, junto com os passos.
+
 ## Tecnologias utilizadas
 
 Abaixo seguem as tecnologias utilizadas:
