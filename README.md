@@ -68,7 +68,7 @@ npm run allure:serve
 
 As evidencias em video estão na pasta cypress/videos
 
-As screenshots estão no arquivo documentacaoTestesAutomatizados.pdf, junto com os passos.
+As screenshots estão no arquivo docs/documentacaoTestesAutomatizados.pdf, junto com os passos.
 
 ## Tecnologias utilizadas
 
